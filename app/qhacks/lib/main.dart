@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
     } else {
       builder.addString('OPEN');
     }
-    print('EXAMPLE::Publishing our topic');
+    print('EXAMPLE::Publishing our lol topic');
     client.publishMessage(pubTopic, MqttQos.exactlyOnce, builder.payload);
   }
 
@@ -143,48 +143,74 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     connectMQTT();
-
     return Scaffold(
 
       appBar: AppBar(
+
         title: new Center(child: new Text(widget.title, textAlign: TextAlign.center, style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold, color: Colors.white))),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'Your Garage Door is ',
-              style: TextStyle(fontSize: 25.0),
-            ),
-            Text(
-              '$_garageStatus',
-               style: TextStyle(fontSize: 50.0),
-            ),
-            RaisedButton(
-              child: Text('$_buttonStatus', style: TextStyle(fontSize: 25.0)),
-              onPressed: _button,
-              color: Colors.green,
-              textColor: Colors.white,
-              padding: const EdgeInsets.all(10.0),
-              splashColor: Colors.lightGreen,
-            ),
-
-            /*Container(
-              decoration: ShapeDecoration(
-                color: Colors.white,
-                shape: Border.all(
-                  color: Colors.black,
-                  width: 2.0,
+            Container(
+              width: 350.0,
+              height: 300.0,
+              decoration: BoxDecoration(
+                color: Colors.grey.withOpacity(0.1),
+                borderRadius: new BorderRadius.all(
+                  new Radius.circular(20.0),
+                ),
+                border: Border.all(
+                  color: Colors.grey.withOpacity(0.5),
+                  width: 5.0,
                 ),
               ),
               child: Text(
-                'Your Garage Door is ',
-                style: TextStyle(fontSize: 25.0),
+                'Your Garage Door Status is \n\n $_garageStatus',
+                style: TextStyle(fontSize: 50.0, fontFamily: 'Allerta'),
+                textAlign: TextAlign.center,
+
               ),
-            ),*/
+            ),
+            SizedBox(height: 100,),
+            Container(
+              width: 350.0,
+              height: 100.0,
+              child: SizedBox(
+                width: double.infinity,
+                child: RaisedButton(
+                  child: Text('$_buttonStatus', style: TextStyle(fontSize: 35.0)),
+                  onPressed: _button,
+                  color: Colors.green,
+                  textColor: Colors.white,
+                  padding: const EdgeInsets.all(5.0),
+                  splashColor: Colors.lightGreen,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(20.0),
+                      side: BorderSide(color: Colors.green.withOpacity(1))
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home, size: 50),
+            title: Text('Home'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.map, size: 50),
+            title: Text('Map'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings, size: 50),
+            title: Text('Settings'),
+          ),
+        ],
       ),
     );
   }
