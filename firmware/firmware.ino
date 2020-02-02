@@ -70,6 +70,7 @@ void setup() {
 }
 
 void loop() {
+  MQTT_connect();
   Adafruit_MQTT_Subscribe *subscription;
   while ((subscription = mqtt.readSubscription())) {
     if (subscription == &sgarage_p) {
@@ -85,14 +86,14 @@ void loop() {
       }
     }
   }
-  String arduinoprocess = "";
-  arduinoprocess = readSerial();
-  char arduinoprocesschar[arduinoprocess.length() + 1];
-  arduinoprocess.toCharArray(arduinoprocesschar, arduinoprocess.length() + 1);
+  if (takeMeasurement() > 20) {
+    //Open
+    doorOpen = true;
+  } else {
+    doorOpen = false;
+  }
   if (mqttConnected) {
-    if (arduinoprocess != "") {
-      sgarage.publish(arduinoprocesschar);
-    }
+    sgarage.publish(doorOpen);
   }
 }
 
