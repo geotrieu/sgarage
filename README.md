@@ -1,5 +1,5 @@
 # sgarage
-<image style="width:100%" src="https://i.imgur.com/wGgEUxF.png" />
+<image style="width:100%;" src="https://i.imgur.com/wGgEUxF.png" />
 <h6> A garage where you will never leave open again. </h6>
 
 As young engineers, we aspire to learn and become a more skilled individual. As our journey to learn and joined QHacks 2020 we wanted something simple yet has a huge impact on the community. After brainstorming we came up with sGarage and it is an application that helps identify car drivers if they left the garage open.
